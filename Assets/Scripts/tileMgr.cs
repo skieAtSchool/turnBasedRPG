@@ -19,13 +19,13 @@ public class tileMgr : MonoBehaviour
 		{
 			while(horizontal != 0)
 			{
-                moveToTile tileScript = tile.GetComponent<moveToTile>();
+                tileScript tileScript = tile.GetComponent<tileScript>();
                 /*if (tileScript != null)
                 {
                     Debug.LogError("cannot get script of tile (" + horizontal + ", " + vertical + ")");
                 }*/
 
-                tileScript.tile = new Vector2Int(horizontal, vertical);
+                tileScript.tilePos = new Vector2Int(horizontal, vertical);
 
                 Instantiate(tile, transform.position, transform.rotation, transform);
 

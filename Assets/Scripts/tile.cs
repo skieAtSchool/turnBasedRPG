@@ -1,9 +1,9 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class moveToTile : MonoBehaviour
+public class tileScript : MonoBehaviour
 {
-    public Vector2Int tile = new Vector2Int(0, 0);
+    public Vector2Int tilePos = new Vector2Int(0, 0);
     public GameObject tileManager;
     public Material baseTileMat;
     public Material yesTileMat;
@@ -14,14 +14,14 @@ public class moveToTile : MonoBehaviour
     {
         self = GetComponent<Renderer>();
         self.material = baseTileMat;
-        transform.position = gameManager.Instance.translateToGlobal(tile);
+        transform.position = gameManager.Instance.translateToGlobal(tilePos);
 
     }
 
     void OnMouseEnter()
     {
-        Debug.Log("enter: " + tile);
-        if (gameManager.Instance.isThereAObstacleHere(tile))
+        Debug.Log("enter: " + tilePos);
+        if (gameManager.Instance.isThereAObstacleHere(tilePos))
         {
             self.material = noTileMat;
         }

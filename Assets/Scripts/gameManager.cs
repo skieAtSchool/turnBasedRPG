@@ -28,14 +28,15 @@ public class gameManager : MonoBehaviour
 
     public bool isThereAObstacleHere(Vector2Int position)
     {
-        if (position.x == 4 && position.y == 2)
+        for (int i = 0; i < enemyMgr.enemyPositions.Length; i++)
         {
-            return true;
+            if (position == enemyMgr.enemyPositions[i])
+            {
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+        return false;
+        
     }
 
     private void Awake()
