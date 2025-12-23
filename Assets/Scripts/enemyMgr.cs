@@ -9,6 +9,7 @@ public class enemyMgr : MonoBehaviour
     private void Start()
     {
         int x = 4;
+        enemyPositions = new Vector2Int[x+1];
         while (x > 0)
         {
             int enemyPrefabNum = Mathf.RoundToInt(Random.Range(0, enemyPrefabs.Length));
@@ -19,8 +20,11 @@ public class enemyMgr : MonoBehaviour
                 Debug.LogError("cannot get script of tile (" + horizontal + ", " + vertical + ")");
             }*/
 
-            enemyScipt.position = new Vector2Int(Random.Range(1, 10),Random.Range(1, 10));
-            enemyPositions[x] = enemyScipt.position;
+            
+            Vector2Int test = new Vector2Int(Random.Range(1, 10),Random.Range(1, 10));
+            enemyScipt.position = test;
+            Debug.Log("i got here??? " + enemyScipt.position);
+            enemyPositions[x] = test;
 
             Instantiate(enemyPrefabs[enemyPrefabNum], transform.position, transform.rotation, transform);
 

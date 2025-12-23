@@ -397,8 +397,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -629,7 +629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9158645412272981019, guid: 14b1ce56546ceea4180f7bb15ebb67c3, type: 3}
       propertyPath: arenaSize.x
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9158645412272981019, guid: 14b1ce56546ceea4180f7bb15ebb67c3, type: 3}
       propertyPath: arenaSize.y
