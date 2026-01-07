@@ -4,6 +4,13 @@ using UnityEngine;
 public class gameManager : MonoBehaviour
 {
     public static gameManager Instance { get; private set; }
+    public bool holding = false;
+    public static State none;
+    public static State move;
+
+    public State popupState = none;
+
+    public Vector2Int focusedPoint;
 
     public Vector3 translateToGlobal(Vector2Int localPos)
     {
@@ -38,6 +45,28 @@ public class gameManager : MonoBehaviour
         return false;
         
     }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            holding = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if(popupState == move)
+            {
+                GameObject popup = GameObject.Find("popup");
+                popupMgr popupMgrScript = popup.GetComponent<popupMgr>();
+                popupMgrScript.hide();
+                Debug.Log("move to " + focusedPoint);
+
+            }
+            holding = false;
+
+        }
+    }
+
 
     private void Awake()
     {

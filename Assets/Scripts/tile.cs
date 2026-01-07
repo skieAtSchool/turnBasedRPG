@@ -3,31 +3,36 @@ using UnityEngine;
 
 public class tileScript : MonoBehaviour
 {
-    public Vector2Int tilePos = new Vector2Int(0, 0);
+    public Vector2Int tilePos; //= new Vector2Int(0, 0);
     public GameObject tileManager;
     public Material baseTileMat;
     public Material yesTileMat;
     public Material noTileMat;
     private Renderer self;
 
+    public State tileState;
+    public static State moveable;
+    public static State unMoveable;
+
+    public bool isHovered = false;
+
+
     void Start()
     {
         self = GetComponent<Renderer>();
         self.material = baseTileMat;
         transform.position = gameManager.Instance.translateToGlobal(tilePos);
+        findState();
+        isHovered = false;
 
     }
 
     void OnMouseEnter()
     {
-        Debug.Log("enter: " + tilePos);
-        if (gameManager.Instance.isThereAObstacleHere(tilePos))
+        if (gameManager.Instance.holding == false)
         {
-            self.material = noTileMat;
-        }
-        else
-        {
-            self.material = yesTileMat;
+            Debug.Log("enter: " + tilePos + " | hoverstate = " + isHovered + " | tileState = " + tileState);
+            isHovered = true;
         }
 
         //emit a signal saying 'yo the player clicked on this tile'
@@ -36,6 +41,36 @@ public class tileScript : MonoBehaviour
     void OnMouseExit()
     {
         self.material = baseTileMat;
+        isHovered = false;
+    }
+
+    public void Update()
+    {
+        if (isHovered == true){
+            if(tileState == moveable)
+            {
+                self.material = yesTileMat;
+            }
+            else 
+            {
+                self.material = noTileMat;
+            }
+        }
+        else if(self.material != baseTileMat)
+        {
+            self.material = baseTileMat;
+        }
+    }
+
+    public void findState()
+    {
+        if (gameManager.Instance.isThereAObstacleHere(tilePos) == true)
+        {
+            tileState = unMoveable;
+        }
+        else {
+            tileState = moveable;
+        }
     }
 
 }
