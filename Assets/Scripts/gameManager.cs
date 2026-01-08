@@ -11,6 +11,9 @@ public class gameManager : MonoBehaviour
     public State popupState = none;
 
     public Vector2Int focusedPoint;
+    public bool focusedIsMovable;
+
+    public Vector2Int playerPos;
 
     public Vector3 translateToGlobal(Vector2Int localPos)
     {
@@ -56,10 +59,17 @@ public class gameManager : MonoBehaviour
         {
             if(popupState == move)
             {
-                GameObject popup = GameObject.Find("popup");
-                popupMgr popupMgrScript = popup.GetComponent<popupMgr>();
-                popupMgrScript.hide();
-                Debug.Log("move to " + focusedPoint);
+                if(focusedIsMovable == true)
+                {
+                    Debug.Log("move to " + focusedPoint);
+                    playerPos = focusedPoint;
+                }
+                else
+                {
+                    Debug.Log(focusedPoint + " is occupied, cannot move");
+                }
+                
+                
 
             }
             holding = false;

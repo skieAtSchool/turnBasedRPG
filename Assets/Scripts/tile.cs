@@ -10,9 +10,9 @@ public class tileScript : MonoBehaviour
     public Material noTileMat;
     private Renderer self;
 
-    public State tileState;
-    public static State moveable;
-    public static State unMoveable;
+    public string tileState;
+    public static string moveable = "moveable";
+    public static string unMoveable = "unMoveable";
 
     public bool isHovered = false;
 
@@ -33,6 +33,14 @@ public class tileScript : MonoBehaviour
         {
             Debug.Log("enter: " + tilePos + " | hoverstate = " + isHovered + " | tileState = " + tileState);
             isHovered = true;
+            gameManager.Instance.focusedPoint = tilePos;
+            if(tileState == moveable)
+            {
+                gameManager.Instance.focusedIsMovable = true;
+            }else if (tileState == unMoveable)
+            {
+                gameManager.Instance.focusedIsMovable = false;
+            }
         }
 
         //emit a signal saying 'yo the player clicked on this tile'
