@@ -15,6 +15,7 @@ public class tileScript : MonoBehaviour
     public static string unMoveable = "unMoveable";
 
     public bool isHovered = false;
+    public float distanceToPlayer;
 
 
     void Start()
@@ -31,7 +32,6 @@ public class tileScript : MonoBehaviour
     {
         if (gameManager.Instance.holding == false)
         {
-            Debug.Log("enter: " + tilePos + " | hoverstate = " + isHovered + " | tileState = " + tileState);
             isHovered = true;
             gameManager.Instance.focusedPoint = tilePos;
             if(tileState == moveable)
@@ -41,6 +41,10 @@ public class tileScript : MonoBehaviour
             {
                 gameManager.Instance.focusedIsMovable = false;
             }
+
+            distanceToPlayer = gameManager.Instance.DistanceToPlayer(tilePos);
+
+            Debug.Log("enter: " + tilePos + " | hoverstate = " + isHovered + " | tileState = " + tileState + " | distanceToPlayer = " + distanceToPlayer);
         }
 
         //emit a signal saying 'yo the player clicked on this tile'

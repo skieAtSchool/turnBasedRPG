@@ -48,6 +48,22 @@ public class gameManager : MonoBehaviour
         return false;
         
     }
+    public float DistanceToPlayer(Vector2Int currentPos)
+    {
+        float x, y;
+        x = currentPos.x - playerPos.x;
+        y = currentPos.y - playerPos.y;
+        
+        x = Mathf.Abs(x);
+        y = Mathf.Abs(y);
+
+        x = Mathf.Pow(x, 2);
+        y = Mathf.Pow(y, 2);
+
+        float fin = Mathf.Sqrt(x + y);
+
+        return fin;
+    }
 
     private void Update()
     {
