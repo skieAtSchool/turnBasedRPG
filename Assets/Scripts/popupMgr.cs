@@ -10,7 +10,7 @@ public class popupMgr : MonoBehaviour
     public SpriteRenderer bootHLSpriteR;
     public Transform bootIco;
     public SpriteRenderer bootIcoSpriteR;
-    
+
 
 
 

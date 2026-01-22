@@ -1,24 +1,22 @@
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class tileMgr : MonoBehaviour
 {
 
-	public GameObject tile;
-	public Vector2Int arenaSize;
+    public GameObject tile;
+    public Vector2Int arenaSize;
 
-	void Start()
-	{
-		int vertical;
-		int horizontal;
-		vertical = Mathf.Abs(arenaSize.x);
-		horizontal = Mathf.Abs(arenaSize.y);
+    void Start()
+    {
+        int vertical;
+        int horizontal;
+        vertical = Mathf.Abs(arenaSize.x);
+        horizontal = Mathf.Abs(arenaSize.y);
 
-		while(vertical != 0)
-		{
-			while(horizontal != 0)
-			{
+        while (vertical != 0)
+        {
+            while (horizontal != 0)
+            {
                 tileScript tileScript = tile.GetComponent<tileScript>();
                 /*if (tileScript != null)
                 {
@@ -29,12 +27,12 @@ public class tileMgr : MonoBehaviour
 
                 Instantiate(tile, transform.position, transform.rotation, transform);
 
-				horizontal -= 1;
-			}
-			horizontal = arenaSize.y;
-			vertical -= 1;
-		}
+                horizontal -= 1;
+            }
+            horizontal = arenaSize.y;
+            vertical -= 1;
+        }
 
 
-	}
+    }
 }

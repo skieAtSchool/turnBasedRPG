@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class tileScript : MonoBehaviour
@@ -34,10 +33,11 @@ public class tileScript : MonoBehaviour
         {
             isHovered = true;
             gameManager.Instance.focusedPoint = tilePos;
-            if(tileState == moveable)
+            if (tileState == moveable)
             {
                 gameManager.Instance.focusedIsMovable = true;
-            }else if (tileState == unMoveable)
+            }
+            else if (tileState == unMoveable)
             {
                 gameManager.Instance.focusedIsMovable = false;
             }
@@ -58,17 +58,18 @@ public class tileScript : MonoBehaviour
 
     public void Update()
     {
-        if (isHovered == true){
-            if(tileState == moveable)
+        if (isHovered == true)
+        {
+            if (tileState == moveable)
             {
                 self.material = yesTileMat;
             }
-            else 
+            else
             {
                 self.material = noTileMat;
             }
         }
-        else if(self.material != baseTileMat)
+        else if (self.material != baseTileMat)
         {
             self.material = baseTileMat;
         }
@@ -80,7 +81,8 @@ public class tileScript : MonoBehaviour
         {
             tileState = unMoveable;
         }
-        else {
+        else
+        {
             tileState = moveable;
         }
     }

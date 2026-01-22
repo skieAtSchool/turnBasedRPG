@@ -369,6 +369,8 @@ MonoBehaviour:
   focusedPoint: {x: 0, y: 0}
   focusedIsMovable: 0
   playerPos: {x: 0, y: 0}
+  popup: {fileID: 0}
+  mousePos: {x: 0, y: 0}
 --- !u!4 &801130013
 Transform:
   m_ObjectHideFlags: 0
@@ -395,7 +397,7 @@ GameObject:
   - component: {fileID: 1022565908}
   m_Layer: 0
   m_Name: popupMgr
-  m_TagString: Untagged
+  m_TagString: popupMgr
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

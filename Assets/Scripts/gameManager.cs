@@ -15,6 +15,11 @@ public class gameManager : MonoBehaviour
 
     public Vector2Int playerPos;
 
+    public popupMgr popup;
+    public Vector2 mousePos;
+    private GameObject popupMgrObj;
+    private popupMgr popupMgrScript;
+
     public Vector3 translateToGlobal(Vector2Int localPos)
     {
         Vector2 localPosCalc = (Vector2)localPos;
@@ -46,14 +51,14 @@ public class gameManager : MonoBehaviour
             }
         }
         return false;
-        
+
     }
     public float DistanceToPlayer(Vector2Int currentPos)
     {
         float x, y;
         x = currentPos.x - playerPos.x;
         y = currentPos.y - playerPos.y;
-        
+
         x = Mathf.Abs(x);
         y = Mathf.Abs(y);
 
@@ -65,32 +70,56 @@ public class gameManager : MonoBehaviour
         return fin;
     }
 
+    private void onMouseDown()
+    {
+        mousePos = Input.mousePosition;
+        popupMgrObj.transform.position = translateToGlobal(focusedPoint);
+        popupMgrScript.showPopup();
+        holding = true;
+    }
+    private void onMouseUp()
+    {
+        if (popupState == move)
+        {
+
+            if (focusedIsMovable == true)
+            {
+                Debug.Log("move to " + focusedPoint);
+                playerPos = focusedPoint;
+            }
+            else
+            {
+                Debug.Log(focusedPoint + " is occupied, cannot move");
+            }
+        }
+        else if (popupState == none)
+        {
+
+        }
+        popupMgrScript.hidePopup();
+        holding = false;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            holding = true;
+            onMouseDown();
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if(popupState == move)
-            {
-                if(focusedIsMovable == true)
-                {
-                    Debug.Log("move to " + focusedPoint);
-                    playerPos = focusedPoint;
-                }
-                else
-                {
-                    Debug.Log(focusedPoint + " is occupied, cannot move");
-                }
-                
-                
-
-            }
-            holding = false;
-
+            onMouseUp();
         }
+    }
+
+    private void Start()
+    {
+        try
+        {
+            popupMgrObj = GameObject.FindGameObjectWithTag("popupMgr");
+            popupMgrScript = popupMgrObj.GetComponent<popupMgr>();
+        }
+        catch { Debug.LogError("popupNotFound"); }
     }
 
 
