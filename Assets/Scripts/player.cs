@@ -17,6 +17,7 @@ public class player : MonoBehaviour
         {
             pos = gameManager.Instance.playerPos;
             moveToPos(pos);
+            Debug.Log("test");
         }
     }
 

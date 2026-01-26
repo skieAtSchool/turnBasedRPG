@@ -8,8 +8,6 @@ public class gameManager : MonoBehaviour
     public static State none;
     public static State move;
 
-    public State popupState = none;
-
     public Vector2Int focusedPoint;
     public bool focusedIsMovable;
 
@@ -79,7 +77,7 @@ public class gameManager : MonoBehaviour
     }
     private void onMouseUp()
     {
-        if (popupState == move)
+        if (popupMgrScript.popupState == "move")
         {
 
             if (focusedIsMovable == true)
@@ -92,7 +90,7 @@ public class gameManager : MonoBehaviour
                 Debug.Log(focusedPoint + " is occupied, cannot move");
             }
         }
-        else if (popupState == none)
+        else if (popupMgrScript.popupState == "none")
         {
 
         }
