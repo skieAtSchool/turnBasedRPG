@@ -9,16 +9,21 @@ public class popupMgr : MonoBehaviour
     public SpriteRenderer layoutSpriteR;
     public Transform bootBg;
     public SpriteRenderer bootBgSpriteR;
+    public Transform swordBg;
+    public SpriteRenderer swordBgSpriteR;
     public Transform bootHL;
     public SpriteRenderer bootHLSpriteR;
+    public Transform swordHL;
+    public SpriteRenderer swordHLSpriteR;
     public Transform bootIco;
     public SpriteRenderer bootIcoSpriteR;
+    public Transform swordIco;
+    public SpriteRenderer swordIcoSpriteR;
 
     public bool isVisible = false;
 
     public Vector3 screenSize;
-    public Camera cam;
-    public float distanceToUI = 5;
+    public float distanceToUI = 50;
 
 
 
@@ -29,15 +34,19 @@ public class popupMgr : MonoBehaviour
         layoutSpriteR = layout.GetComponent<SpriteRenderer>();
         bootBg = transform.GetChild(1);
         bootBgSpriteR = bootBg.GetComponent<SpriteRenderer>();
-        bootHL = transform.GetChild(2);
+        swordBg = transform.GetChild(2);
+        swordBgSpriteR = swordBg.GetComponent<SpriteRenderer>();
+        bootHL = transform.GetChild(3);
         bootHLSpriteR = bootHL.GetComponent<SpriteRenderer>();
-        bootIco = transform.GetChild(3);
+        swordHL = transform.GetChild(4);
+        swordHLSpriteR = swordHL.GetComponent<SpriteRenderer>();
+        bootIco = transform.GetChild(5);
         bootIcoSpriteR = bootIco.GetComponent<SpriteRenderer>();
-
-        cam = GameObject.FindGameObjectWithTag("cam").GetComponent<Camera>();
+        swordIco = transform.GetChild(6);
+        swordIcoSpriteR = swordIco.GetComponent<SpriteRenderer>();
 
         screenSize = new Vector3(Screen.height, Screen.width, 0);
-
+        
     }
 
     public void FixedUpdate()
@@ -47,19 +56,34 @@ public class popupMgr : MonoBehaviour
             Vector2 centerOfUI = Camera.main.WorldToScreenPoint(transform.position);
             
             Vector2 mousePos = Input.mousePosition;
-            float angle = Vector2.Angle(mousePos - centerOfUI, Vector2.right);
-            Debug.Log(angle);
-            Debug.Log(Vector2.Distance(mousePos, centerOfUI));
+            float angle = Vector2.SignedAngle(mousePos - centerOfUI, Vector2.right);
             if (Vector2.Distance(mousePos, centerOfUI) > distanceToUI) {
                 if (-45 > angle && -135 < angle)
                 {
                     bootHLSpriteR.enabled = true;
+                    bootBgSpriteR.enabled = false;
                     popupState = "move";
+                }
+                else if ((-135 > angle && -180 < angle) || (135 < angle && 180 > angle))
+                {
+                    swordHLSpriteR.enabled = true;
+                    swordBgSpriteR.enabled = false;
+                    popupState = "fight";
                 }
                 else
                 {
+                    bootBgSpriteR.enabled = true;
                     bootHLSpriteR.enabled = false;
+                    swordBgSpriteR.enabled = true;
+                    swordHLSpriteR.enabled = false;
                 }
+            }
+            else
+            {
+                bootBgSpriteR.enabled = true;
+                bootHLSpriteR.enabled = false;
+                swordBgSpriteR.enabled = true;
+                swordHLSpriteR.enabled = false;
             }
         }
     }
@@ -82,6 +106,9 @@ public class popupMgr : MonoBehaviour
         bootBgSpriteR.enabled = value;
         bootIcoSpriteR.enabled = value;
         bootHLSpriteR.enabled = value;
+        swordBgSpriteR.enabled = value;
+        swordIcoSpriteR.enabled = value;
+        swordHLSpriteR.enabled = value;
     }
 
 }
