@@ -46,7 +46,7 @@ public class popupMgr : MonoBehaviour
         swordIcoSpriteR = swordIco.GetComponent<SpriteRenderer>();
 
         screenSize = new Vector3(Screen.height, Screen.width, 0);
-        
+
     }
 
     public void FixedUpdate()
@@ -54,10 +54,11 @@ public class popupMgr : MonoBehaviour
         if (isVisible)
         {
             Vector2 centerOfUI = Camera.main.WorldToScreenPoint(transform.position);
-            
+
             Vector2 mousePos = Input.mousePosition;
             float angle = Vector2.SignedAngle(mousePos - centerOfUI, Vector2.right);
-            if (Vector2.Distance(mousePos, centerOfUI) > distanceToUI) {
+            if (Vector2.Distance(mousePos, centerOfUI) > distanceToUI)
+            {
                 if (-45 > angle && -135 < angle)
                 {
                     bootHLSpriteR.enabled = true;
