@@ -6,6 +6,7 @@ TagManager:
   tags:
   - popupMgr
   - player
+  - faceDetailParent
   layers:
   - Default
   - TransparentFX
