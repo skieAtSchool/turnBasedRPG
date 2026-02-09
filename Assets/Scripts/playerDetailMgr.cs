@@ -4,14 +4,17 @@ using System.Collections.Generic;
 
 public class playerDetailMgr : MonoBehaviour
 {
-    
+    public playerValues playerVal;
+    public GameObject faceDetailParent;
+    public GameObject playerValuesYay;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         getPlayer();
-        playerValues playerVal = readPlayerValuesFromSave();
-        assignPlayerValues(playerVal, GameObject.FindGameObjectWithTag("faceDetailParent"));
+        playerVal = readPlayerValuesFromSave();
+        faceDetailParent = GameObject.FindGameObjectWithTag("faceDetailParent");
+        assignPlayerValues(playerVal, faceDetailParent);
     }
 
     // Update is called once per frame
@@ -27,7 +30,8 @@ public class playerDetailMgr : MonoBehaviour
 
     playerValues readPlayerValuesFromSave()
     {
-        playerValues saveValue = new playerValues();
+        GameObject test = Instantiate(playerValuesYay);
+        playerValues saveValue = test.GetComponent<playerValues>();
         return saveValue;
     }
 

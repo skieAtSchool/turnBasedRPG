@@ -6676,6 +6676,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b869a582049094f9313a8b07058da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerDetailMgr
+  playerVal: {fileID: 0}
+  faceDetailParent: {fileID: 0}
+  playerValuesYay: {fileID: 8560253422033684560, guid: 5942e8431745d87418e291a03e978eee, type: 3}
 --- !u!1 &978945845
 GameObject:
   m_ObjectHideFlags: 0
